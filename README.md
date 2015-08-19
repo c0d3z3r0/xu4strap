@@ -45,3 +45,9 @@ Yes, of course but please keep the author name where it is :-)
 
 ## Questions?
 Contact me on IRC via c0d3z3r0 @ freenode.net
+
+# License
+
+Copyright (C) 2015 Michael Niewöhner
+
+This is open source software, licensed under GPLv2. See the file LICENSE for details.
