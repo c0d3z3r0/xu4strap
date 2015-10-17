@@ -12,6 +12,8 @@ def parseargs():
     parser = argparse.ArgumentParser(description='RPi2strap')
     parser.add_argument('sdcard', nargs=1,
                         help='SD card to install debian on e.g. /dev/sdc')
+    parser.add_argument('--debug', "-d", action="store_true",
+                        help='Enable debug output')
     parser.add_argument('--boot-size', "-b", type=int, default=100,
                         help='Boot partition size in MB')
     parser.add_argument('--packages', "-p",
@@ -43,7 +45,8 @@ def main():
 
     # Initialize ArmDebootstrap and start the installation process
     from armdebootstrap import ArmDeboostrap
-    adb = ArmDeboostrap(name, hostname, args.sdcard[0], partitions, packages)
+    adb = ArmDeboostrap(name, hostname, args.sdcard[0], partitions,
+                        packages, debug=args.debug)
     adb.init()
     adb.install()
 
