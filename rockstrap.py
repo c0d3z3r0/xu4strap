@@ -12,6 +12,8 @@ def parseargs():
     parser = argparse.ArgumentParser(description='RPi2strap')
     parser.add_argument('sdcard', nargs=1,
                         help='SD card to install debian on e.g. /dev/sdc')
+    parser.add_argument('--boot-size', "-b", type=int, default=100,
+                        help='Boot partition size in MB')
     parser.add_argument('--packages', "-p",
                         help='Comma separated list of additional packages')
     return parser.parse_args()
@@ -22,8 +24,11 @@ def main():
     args = parseargs()
     name = 'RockStrap'
     hostname = 'radxarock'
+    bootsize = '+' + args.bootsize + 'M'
     sdcard = args.sdcard[0]
     partitions = [
+        {'start': '', 'end': bootsize, 'type': 'e', 'fs': 'msdos',
+         'mount': '/boot'},
         {'start': '', 'end': '', 'type': '83', 'fs': 'ext4',
          'mount': '/'}
     ]
