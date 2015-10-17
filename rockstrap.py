@@ -52,7 +52,23 @@ def main():
 
     # ################### Radxa Rock specific stuff ####################
 
-    #TODO: sd card booting stuff and kernel installation
+    # Install rock-update
+    adb.lprint("Install rock-update.")
+    adb.run('curl -Lso %s/usr/bin/rock-update '
+            'https://raw.githubusercontent.com/c0d3z3r0/rock-update/master/'
+            'rock-update' % adb.tmp)
+    adb.run('chmod +x %s/usr/bin/rock-update' % adb.tmp)
+
+    # Install kernel and modules
+    adb.lprint("Install kernel and modules.")
+    if not os.path.isdir("%s/lib/modules" % adb.tmp):
+        os.mkdir("%s/lib/modules" % adb.tmp, 755)
+    adb.run("SKIP_WARNING=1 chroot %s /usr/bin/rock-update" % adb.tmp)
+
+    # Install bootloader
+    adb.lprint("Install bootloader to sd card.")
+    adb.run("dd if=%s/boot/boot.bin of=%s bs=$((0x200)) seek=$((0x40))" %
+            (adb.tmp, adb.sdcard))
 
     # ################### end Radxa Rock specific stuff ####################
 
