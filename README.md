@@ -17,7 +17,7 @@ There is some software you have to install before using my installer:
 * curl
 * dosfstools
 * cdebootstrap
-* qemu-user-static.
+* qemu-user-static
 
 If there is no package python3-colorama you can also install it with `pip3 install colorama` after installing `python3-pip` via aptitude / apt-get.
 
@@ -27,11 +27,24 @@ If there is no package python3-colorama you can also install it with `pip3 insta
 Just look at the help: ./rockstrap.py -h
 
 ## Packages already included
-- debian standard packages
-- keyboard-configuration, console-data, console-setup
-- ntp, tzdata, locales, openssh-server, ca-certificates, openssl
-- cpufrequtils, cpufreqd
-- vim, aptitude, apt-transport-https, psmisc
+* debian standard packages
+* apt-transport-https
+* aptitude
+* ca-certificates
+* console-data
+* console-setup
+* cpufreqd
+* cpufrequtils
+* curl
+* dbus
+* htop
+* keyboard-configuration
+* locales
+* ntp
+* openssh-server
+* psmisc
+* tzdata
+* vim
 
 ## I want wheezy instead of jessie
 Open the script with vim and type `:%s/jessie/wheezy`. Then close vim with `:wq`. That's it.
