@@ -26,7 +26,7 @@ def main():
     args = parseargs()
     name = 'RockStrap'
     hostname = 'radxarock'
-    bootsize = '+' + args.bootsize + 'M'
+    bootsize = '+' + str(args.boot_size) + 'M'
     partitions = [
         {'start': '', 'end': bootsize, 'type': 'e', 'fs': 'msdos',
          'mount': '/boot'},
