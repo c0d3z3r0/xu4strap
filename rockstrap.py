@@ -66,7 +66,7 @@ def main():
     adb.run("mount --rbind /dev %s/dev" % adb.tmp)
     adb.run("SKIP_WARNING=1 SD_DEV=%s chroot %s /usr/bin/rock-update" %
             (adb.sdcard, adb.tmp))
-    adb.run("umount %s/dev" % adb.tmp)
+    adb.run("umount -R %s/dev" % adb.tmp)
 
     # ################### end Radxa Rock specific stuff ####################
 
