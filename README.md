@@ -30,6 +30,7 @@ Just look at the help: ./rockstrap.py -h
 * debian standard packages
 * apt-transport-https
 * aptitude
+* binutils
 * ca-certificates
 * console-data
 * console-setup
