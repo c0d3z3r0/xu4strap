@@ -6,6 +6,8 @@ __email__ = 'mniewoeh@stud.hs-offenburg.de'
 import argparse
 import sys
 import os
+import random
+
 
 # TODO: move argparse to armdebootstrap
 def parseargs():
@@ -51,6 +53,15 @@ def main():
     adb.install()
 
     # ################### Radxa Rock specific stuff ####################
+
+    # Generate random locally administered mac address
+    mac = ':'.join(map(lambda x: "%02X" % x,
+                       [random.randint(0x00, 0xFF) & 0xFC | 0x02] +
+                       [random.randint(0x00, 0xFF) for _ in range(0, 5)]))
+
+    adb.writeFile('/etc/network/interfaces',
+                  '  hwaddress ether %s' % mac,
+                  append=True)
 
     # Install rock-update
     adb.lprint("Install rock-update.")
