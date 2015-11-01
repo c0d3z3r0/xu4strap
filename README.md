@@ -39,6 +39,7 @@ Just look at the help: ./rockstrap.py -h
 * curl
 * dbus
 * htop
+* iw
 * keyboard-configuration
 * locales
 * ntp
