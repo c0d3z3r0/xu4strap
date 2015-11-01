@@ -35,7 +35,7 @@ def main():
         {'start': '', 'end': '', 'type': '83', 'fs': 'ext4',
          'mount': '/'}
     ]
-    packages = ['binutils']
+    packages = ['binutils', 'firmware-realtek']
     if args.packages:
         packages += args.packages.split(',')
 
