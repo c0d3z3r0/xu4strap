@@ -46,6 +46,8 @@ Just look at the help: ./rockstrap.py -h
 * psmisc
 * tzdata
 * vim
+* wireless-tools
+* wpasupplicant
 
 ## I want wheezy instead of jessie
 Open the script with vim and type `:%s/jessie/wheezy`. Then close vim with `:wq`. That's it.
