@@ -77,7 +77,7 @@ def main():
                        [random.randint(0x00, 0xFF) & 0xFC | 0x02] +
                        [random.randint(0x00, 0xFF) for _ in range(0, 5)]))
 
-    adb.writeFile('/etc/network/interfaces',
+    adb.writeFile('/etc/network/interfaces.d/eth0',
                   '  hwaddress ether %s' % mac,
                   append=True)
 
