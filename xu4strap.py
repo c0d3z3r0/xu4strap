@@ -52,7 +52,7 @@ def main():
         {'start': str(4096+args.boot_size*2048), 'end': '',
          'type': '83', 'fs': 'ext4', 'mount': '/'}
     ]
-    packages = []
+    packages = ['curl']
     if args.packages:
         packages += args.packages.split(',')
 
