@@ -49,7 +49,7 @@ def main():
     partitions = [
         {'start': '4096', 'end': '+%sM' % str(args.boot_size), 'type': 'e',
          'fs': 'msdos', 'mount': '/boot'},
-        {'start': '+%sM' % str(4096+args.boot_size*2048), 'end': '',
+        {'start': str(4096+args.boot_size*2048), 'end': '',
          'type': '83', 'fs': 'ext4', 'mount': '/'}
     ]
     packages = []
