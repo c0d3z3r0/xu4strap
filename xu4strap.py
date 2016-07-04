@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-# rockstrap
+# xu4strap
 # Copyright (C) 2016  Michael Niewöhner <foss@mniewoehner.de>
 #
 # This program is free software; you can redistribute it and/or modify
@@ -29,7 +29,7 @@ import random
 
 # TODO: move argparse to armdebootstrap
 def parseargs():
-    parser = argparse.ArgumentParser(description='Rockstrap')
+    parser = argparse.ArgumentParser(description='XU4strap')
     parser.add_argument('sdcard', nargs=1,
                         help='SD card to install debian on e.g. /dev/sdc')
     parser.add_argument('--debug', "-d", action="store_true",
@@ -44,16 +44,15 @@ def parseargs():
 def main():
 
     args = parseargs()
-    name = 'RockStrap'
-    hostname = 'radxarock'
-    bootsize = '+' + str(args.boot_size) + 'M'
+    name = 'xu4strap'
+    hostname = 'odroidxu4'
     partitions = [
-        {'start': '', 'end': bootsize, 'type': 'e', 'fs': 'msdos',
-         'mount': '/boot'},
-        {'start': '', 'end': '', 'type': '83', 'fs': 'ext4',
-         'mount': '/'}
+        {'start': '4096', 'end': '+%sM' % args.bootsize, 'type': 'e',
+         'fs': 'msdos', 'mount': '/boot'},
+        {'start': '+%sM' % 4096+args.bootsize*2048, 'end': '',
+         'type': '83', 'fs': 'ext4', 'mount': '/'}
     ]
-    packages = ['binutils', 'firmware-realtek']
+    packages = []
     if args.packages:
         packages += args.packages.split(',')
 
@@ -70,7 +69,7 @@ def main():
     adb.init()
     adb.install()
 
-    # ################### Radxa Rock specific stuff ####################
+    # ################### Odroid-XU4 specific stuff ####################
 
     # Generate random locally administered mac address
     mac = ':'.join(map(lambda x: "%02X" % x,
@@ -81,23 +80,23 @@ def main():
                   '  hwaddress ether %s' % mac,
                   append=True)
 
-    # Install rock-update
-    adb.lprint("Install rock-update.")
-    adb.run('curl -Lso %s/usr/bin/rock-update '
-            'https://raw.githubusercontent.com/c0d3z3r0/rock-update/master/'
-            'rock-update' % adb.tmp)
-    adb.run('chmod +x %s/usr/bin/rock-update' % adb.tmp)
+    # Install xu4-update
+    adb.lprint("Install xu4-update.")
+    adb.run('curl -Lso %s/usr/bin/xu4-update '
+            'https://raw.githubusercontent.com/c0d3z3r0/xu4-update/master/'
+            'xu4-update' % adb.tmp)
+    adb.run('chmod +x %s/usr/bin/xu4-update' % adb.tmp)
 
     # Install kernel and modules
     adb.lprint("Install kernel, modules and bootloader.")
     if not os.path.isdir("%s/lib/modules" % adb.tmp):
         os.mkdir("%s/lib/modules" % adb.tmp, 755)
     adb.run("mount --rbind /dev %s/dev" % adb.tmp)
-    adb.run("SKIP_WARNING=1 SD_DEV=%s chroot %s /usr/bin/rock-update" %
+    adb.run("SKIP_WARNING=1 SD_DEV=%s chroot %s /usr/bin/xu4-update" %
             (adb.sdcard, adb.tmp))
     adb.run("umount -R %s/dev" % adb.tmp)
 
-    # ################### end Radxa Rock specific stuff ####################
+    # ################# end Odroid-XU4 specific stuff ##################
 
     adb.cleanup()
     sys.exit(0)

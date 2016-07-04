@@ -1,12 +1,12 @@
-# rockstrap for Radxa Rock
+# xu4strap for Odroid-XU4
 
 ## What is it?
-rockstrap is a script for installing Debian GNU/Linux Jessie 8.0 armhf to a sd card for Radxa Rock.
+xu4strap is a script for installing Debian GNU/Linux Jessie 8.0 armhf to a sd card for Odroid-XU4.
 
 ## Why?
 Why not? :-) I *hate* downloading big sd card images and dd'ing them onto my sd cards resulting in an overblown Debian installation with software I am never going to use. You'll simply get a basic Debian installation like from the netinstaller with some more basic packages (see below).
 
-## What you will need and how to I use it
+## What you will need and how to use it
 There is some software you have to install before using my installer:
 
 * python3
