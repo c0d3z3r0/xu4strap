@@ -47,9 +47,9 @@ def main():
     name = 'xu4strap'
     hostname = 'odroidxu4'
     partitions = [
-        {'start': '4096', 'end': '+%sM' % args.bootsize, 'type': 'e',
+        {'start': '4096', 'end': '+%sM' % str(args.boot_size), 'type': 'e',
          'fs': 'msdos', 'mount': '/boot'},
-        {'start': '+%sM' % 4096+args.bootsize*2048, 'end': '',
+        {'start': '+%sM' % str(4096+args.boot_size*2048), 'end': '',
          'type': '83', 'fs': 'ext4', 'mount': '/'}
     ]
     packages = []
