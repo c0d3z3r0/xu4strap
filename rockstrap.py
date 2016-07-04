@@ -29,7 +29,7 @@ import random
 
 # TODO: move argparse to armdebootstrap
 def parseargs():
-    parser = argparse.ArgumentParser(description='RPi2strap')
+    parser = argparse.ArgumentParser(description='Rockstrap')
     parser.add_argument('sdcard', nargs=1,
                         help='SD card to install debian on e.g. /dev/sdc')
     parser.add_argument('--debug', "-d", action="store_true",
