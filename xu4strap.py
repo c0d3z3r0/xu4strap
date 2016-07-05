@@ -46,6 +46,7 @@ def main():
     args = parseargs()
     name = 'xu4strap'
     hostname = 'odroidxu4'
+    rootdevice = 'mmcblk1'
     partitions = [
         {'start': '4096', 'end': '+%sM' % str(args.boot_size), 'type': 'e',
          'fs': 'msdos', 'mount': '/boot'},
@@ -65,7 +66,7 @@ def main():
     # Initialize ArmDebootstrap and start the installation process
     from armdebootstrap import ArmDeboostrap
     adb = ArmDeboostrap(name, hostname, args.sdcard[0], partitions,
-                        packages, debug=args.debug)
+                        packages, rootdevice, debug=args.debug)
     adb.init()
     adb.install()
 
