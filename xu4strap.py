@@ -81,6 +81,13 @@ def main():
                   '  hwaddress ether %s' % mac,
                   append=True)
 
+    # Allow root login on ttySAC2
+    adb.writeFile('/etc/securetty', """\
+
+# Odroid-XU4
+ttySAC2
+""", append=True)
+
     # Install xu4-update
     adb.lprint("Install xu4-update.")
     adb.run('curl -Lso %s/usr/bin/xu4-update '
