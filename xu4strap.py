@@ -66,7 +66,7 @@ def main():
     # Initialize ArmDebootstrap and start the installation process
     from armdebootstrap import ArmDeboostrap
     adb = ArmDeboostrap(name, hostname, args.sdcard[0], partitions,
-                        packages, rootdevice, debug=args.debug)
+                        packages, rootdevice=rootdevice, debug=args.debug)
     adb.init()
     adb.install()
 
